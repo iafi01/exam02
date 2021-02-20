@@ -6,7 +6,7 @@
 /*   By: liafigli <liafigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/20 09:45:52 by liafigli          #+#    #+#             */
-/*   Updated: 2021/02/20 10:39:59 by liafigli         ###   ########.fr       */
+/*   Updated: 2021/02/20 14:51:51 by liafigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_flags
     int precision;
 } t_flags;
 
+char *ft_strdup(char *str);
 int ft_is_type(int c);
 int ft_isdigit(int c);
 int ft_check(char *s, va_list args);
