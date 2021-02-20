@@ -6,7 +6,7 @@
 /*   By: liafigli <liafigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 15:38:40 by liafigli          #+#    #+#             */
-/*   Updated: 2021/02/20 08:33:48 by liafigli         ###   ########.fr       */
+/*   Updated: 2021/02/20 09:19:19 by liafigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,11 @@ int ft_check(char *str, char c, int i)
 
 void ft_iter(char *s1, char *s2)
 {
-    int i;
-    int j;
-    int k;
+    int i = 0;
+    int j = 0;
+    int k = 0;
     char *s3;
     
-    i = 0;
-    j = 0;
-    k = 0;
     while (s1[i])
     {
         if (ft_check(s3, s1[i], i) == 1)

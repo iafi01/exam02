@@ -6,7 +6,7 @@
 /*   By: liafigli <liafigli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 17:14:15 by liafigli          #+#    #+#             */
-/*   Updated: 2021/02/19 17:36:29 by liafigli         ###   ########.fr       */
+/*   Updated: 2021/02/20 14:00:08 by liafigli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,24 @@ int ft_strlen(char *s)
 int get_next_line(char **line)
 {
     char c;
-    int i;
-    int o;
+    char *str;
+    int i = 0;
+    int o = 0;
+    char buf[99999];
 
-    i = 0;
+    while (i < 99999)
+    {
+        buf[i++] = 0;
+    }
     while ((o = read(0, &c, 1)) > 1)
     {
         if (c == '\n')
             break;
-        free(line);
-        line = malloc(ft_strlen(line) + 1);
-        *line[i++] = c;
+        buf[i++] = c;
     }
-    *line[i++] = 0;
+    buf[i] = 0;
+    if (!(str = (char *)malloc(ft_strlen(buf) + 1)))
+        str = NULL;
+    *line = str;
     return (o);
 }
