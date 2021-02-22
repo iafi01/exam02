@@ -1,52 +1,34 @@
-static int ft_strlen(char *s)
-{
-    int i;
+#include "get_next_line.h"
 
-    i = 0;
-    while (s[i])
-        i++;
-    return (i);
+static char *charjoin(char *s, char c, int max)
+{
+	char *ret = malloc(max + 2);
+	int i = -1;
+	while(s[++i])
+		ret[i] = s[i];
+	ret[i++] = c;
+	ret[i] = 0;
+	free(s);
+	return (ret);
 }
 
-static char *ft_memcpy(char *dst, char *src, int n)
+int get_next_line(int fd, char **line)
 {
-     int i = 0;
-     while (i < n)
-     {
-         dst[i] = src[i];
-         i++;
-     }
-     dst[i] = 0;
-     return (dst);
+	char c;
+	int i, max = 0;
+	if(line == 0)
+		return -1;
+	*line = malloc(1);
+	*line[0] = 0;
+	while((i = read(fd, &c, 1)) > 0)
+	{
+		if(c == '\n')
+			break;
+		*line = charjoin(*line, c, max++);
+	}
+	if (i == -1)
+		return(-1);
+	if (i == 1)
+		return (1);
+	return (0);
 }
-
-int get_next_line(char **line)
-{
-    char c;
-    char *str;
-    int i = 0;
-    int o = 0;
-    char buf[99999];
-
-    while (i < 99999)
-        buf[i++] = 0;
-    i = 0;
-    while ((o = read(0, &c, 1)) > 1)
-    {
-        if (c == '\n')
-            break;
-        buf[i++] = c;
-    }
-    buf[i] = 0;
-    if (!(str = (char *)malloc(ft_strlen(buf) + 1)))
-        str = 0;
-    ft_memcpy(str, buf, ft_strlen(buf) + 1);
-    *line = str;
-    return (o);
-}
-/*#include <stdio.h>
-int main()
-{
-    char **line = NULL;
-    printf("%d",get_next_line(line));
-}*/
