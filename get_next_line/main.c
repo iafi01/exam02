@@ -1,16 +1,16 @@
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
-#include "get_next_line.h"
+#include <unistd.h>
+#include <fcntl.h>
 
-int
-	main(void)
-{
+int gnl(char **line);
+
+int main(void) {
 	int		r;
 	char	*line;
 
 	line = NULL;
-	while ((r = get_next_line(&line)) > 0)
+	while ((r = gnl(&line)) > 0)
 	{
 		printf("%s\n", line);
 		free(line);

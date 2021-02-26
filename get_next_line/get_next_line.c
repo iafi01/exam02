@@ -1,6 +1,11 @@
-#include "get_next_line.h"
+#include <stdlib.h>
+#include <unistd.h>
 
-static char *charjoin(char *s, char c, int max)
+//	questo programma POTREBBE andare in timeout
+//	per linee più lunghe di 20000 caratteri
+//	ma e' molto piu' corto e facile di fast.c
+
+char *charjoin(char *s, char c, int max)
 {
 	char *ret = malloc(max + 2);
 	int i = -1;
@@ -12,7 +17,7 @@ static char *charjoin(char *s, char c, int max)
 	return (ret);
 }
 
-int get_next_line(int fd, char **line)
+int gnl(char **line)
 {
 	char c;
 	int i, max = 0;
@@ -20,7 +25,7 @@ int get_next_line(int fd, char **line)
 		return -1;
 	*line = malloc(1);
 	*line[0] = 0;
-	while((i = read(fd, &c, 1)) > 0)
+	while((i = read(0, &c, 1)) > 0)
 	{
 		if(c == '\n')
 			break;
@@ -28,7 +33,5 @@ int get_next_line(int fd, char **line)
 	}
 	if (i == -1)
 		return(-1);
-	if (i == 1)
-		return (1);
-	return (0);
+	return i == 0 ? 0 : 1;
 }
