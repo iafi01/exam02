@@ -31,7 +31,5 @@ int gnl(char **line)
 			break;
 		*line = charjoin(*line, c, max++);
 	}
-	if (i == -1)
-		return(-1);
-	return i == 0 ? 0 : 1;
+	return (i);
 }
